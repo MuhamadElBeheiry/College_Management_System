@@ -20,6 +20,20 @@ namespace Project.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public ActionResult ViewStudent(int? id)
+        {
+            if (id == null || db.Students.Find(id) == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Student"] = db.Students.Find(id);
+            ViewData["Departments"] = db.Departments.ToList();
+            ViewData["Levels"] = db.Levels.ToList();
+            return View();
+        }
+
         #region Student section
 
         [HttpPost]

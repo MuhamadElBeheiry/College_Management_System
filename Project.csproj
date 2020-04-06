@@ -277,6 +277,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Dean\Index.cshtml" />
     <Content Include="Views\Dean\_AddUser.cshtml" />
+    <Content Include="Views\Dean\ViewStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
