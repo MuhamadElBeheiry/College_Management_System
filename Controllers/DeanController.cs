@@ -20,6 +20,8 @@ namespace Project.Controllers
             return View();
         }
 
+        #region Student section
+
         [HttpPost]
         public ActionResult AddStudent(Student student)
         {
@@ -27,5 +29,42 @@ namespace Project.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult DeleteStudent(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Student student = db.Students.Find(id);
+            if (student == null)
+            {
+                return RedirectToAction("Index");
+            }
+            foreach (var answer in student.Answers)
+            {
+                db.Answers.Remove(answer);
+            }
+            db.Users.Remove(student.User);
+            db.Students.Remove(student);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        #endregion
+
+        #region Doctor section
+
+
+
+        #endregion
+
+        #region Employee section
+
+
+
+        #endregion
+
     }
 }
