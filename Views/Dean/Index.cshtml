@@ -1,4 +1,11 @@
-﻿
+﻿@{
+    IEnumerable<Project.Models.Student> Students = ViewData["Students"] as IEnumerable<Project.Models.Student>;
+    IEnumerable<Project.Models.Doctor> Doctors = ViewData["Doctors"] as IEnumerable<Project.Models.Doctor>;
+    IEnumerable<Project.Models.Employee> Employees = ViewData["Employees"] as IEnumerable<Project.Models.Employee>;
+    IEnumerable<Project.Models.Department> Departments = ViewData["Departments"] as IEnumerable<Project.Models.Department>;
+    IEnumerable<Project.Models.Level> Levels = ViewData["Levels"] as IEnumerable<Project.Models.Level>;
+}
+
 @{
     Layout = null;
 }
@@ -6,254 +13,274 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/Content/Dean/Index.css" />
-        <meta name="viewport" content="width=device-width" />
-        <title>ListAll</title>
-    </head>
-    <body>
-        <div class="my-5 text-center">
-            <button id="employee" class="btn btn-primary">Add employee</button>
-            <button id="student" class="btn btn-primary">Add student</button>
-            <button id="professor" class="btn btn-primary">Add professor</button>
-        </div>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Dean/Index.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <!--Add Student, Employee and Doctors buttons-->
+    <div class="my-5 text-center">
+        <button id="student" class="btn btn-primary">Add Sudent</button>
+        <button id="professor" class="btn btn-primary">Add Professor</button>
+        <button id="employee" class="btn btn-primary">Add Employee</button>
+    </div>
 
-        <div class="container py-3" id="Professor-form">
-            <h2 class="text-center"> Add Professor</h2>
-            <div class="container py-4">
-                <input id="searchInp" class="form-control mb-2" placeholder="search .." />
-                <div class="row" id="searchRow"></div>
-            </div>
-            <div id="alertContainer" class="alert alert-danger">
-            </div>
-            <div class="form-group">
-                <label>ID :</label>
-                <input id="productName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>First Name :</label>
-                <input id="productName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Last Name :</label>
-                <input id="productName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>salary :</label>
-                <input id="productPrice" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Any Comment :</label>
-                <textarea id="productDesc" maxlength="50" class="form-control"></textarea>
-                <span class="countChar">Characters Remaining</span>
-            </div>
-            <button id="addBtn" class="btn float-right btn-info">add product</button>
-            <div class="clearfix"></div>
+    <div class="container py-3" id="Professor-form">
+        <h2 class="text-center"> Add Professor</h2>
+        <div class="container py-4">
+            <input id="searchInp" class="form-control mb-2" placeholder="search .." />
+            <div class="row" id="searchRow"></div>
         </div>
-
-        <div class="container py-3" id="Employee-form">
-            <h2 class="text-center"> Add Employee</h2>
-            <div class="container py-4">
-                <input id="searchInp" class="form-control mb-2" placeholder="search .." />
-                <div class="row" id="searchRow"></div>
-            </div>
-            <div id="alertContainer" class="alert alert-danger">
-            </div>
-            <div class="form-group">
-                <label>ID :</label>
-                <input id="productName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>First Name :</label>
-                <input id="productName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Last Name :</label>
-                <input id="productName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>salary :</label>
-                <input id="productPrice" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Any Comment :</label>
-                <textarea id="productDesc" maxlength="50" class="form-control"></textarea>
-                <span class="countChar">Characters Remaining</span>
-            </div>
-            <button id="addBtn" class="btn float-right btn-info">add product</button>
-            <div class="clearfix"></div>
+        <div id="alertContainer" class="alert alert-danger">
         </div>
+        <div class="form-group">
+            <label>ID :</label>
+            <input id="productName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>First Name :</label>
+            <input id="productName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Last Name :</label>
+            <input id="productName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>salary :</label>
+            <input id="productPrice" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Any Comment :</label>
+            <textarea id="productDesc" maxlength="50" class="form-control"></textarea>
+            <span class="countChar">Characters Remaining</span>
+        </div>
+        <button id="addBtn" class="btn float-right btn-info">add product</button>
+        <div class="clearfix"></div>
+    </div>
 
+    <div class="container py-3" id="Employee-form">
+        <h2 class="text-center"> Add Employee</h2>
+        <div class="container py-4">
+            <input id="searchInp" class="form-control mb-2" placeholder="search .." />
+            <div class="row" id="searchRow"></div>
+        </div>
+        <div id="alertContainer" class="alert alert-danger">
+        </div>
+        <div class="form-group">
+            <label>ID :</label>
+            <input id="productName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>First Name :</label>
+            <input id="productName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Last Name :</label>
+            <input id="productName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>salary :</label>
+            <input id="productPrice" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Any Comment :</label>
+            <textarea id="productDesc" maxlength="50" class="form-control"></textarea>
+            <span class="countChar">Characters Remaining</span>
+        </div>
+        <button id="addBtn" class="btn float-right btn-info">add product</button>
+        <div class="clearfix"></div>
+    </div>
+
+    <!--Form of adding new student-->
+    <form action="~/Dean/AddStudent" method="post">
         <div class="container py-3" id="Student-form">
-            <h2 class="text-center">Add Student</h2>
-            <div class="container py-4">
-                <input id="searchInp" class="form-control mb-2" placeholder="search .." />
-                <div class="row" id="searchRow"></div>
-            </div>
-            <div id="alertContainer" class="alert alert-danger">
-            </div>
-            <div class="form-group">
-                <label>ID :</label>
-                <input id="productName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>First Name :</label>
-                <input id="productName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Last Name :</label>
-                <input id="productName" class="form-control" />
-            </div>
+            <h2 class="text-center">Student</h2>
+            <div id="alertContainer" class="alert alert-danger"></div>
+            <!--Role-->
+            <input type="hidden" name="User.RoleID" value="3" />
+            @Html.Partial("_AddUser")
+            <!--Level-->
             <div class="form-group">
                 <label>Level :</label>
-                <input id="productName" class="form-control" />
+                <select name="Lvl" class="form-control">
+                    <option value="" disabled selected>-- Choose Level --</option>
+                    @foreach (var level in Levels)
+                    {
+                        <option value="@level.level">@level.level</option>
+                    }
+                </select>
             </div>
+            <!--Choose Major Department-->
             <div class="form-group">
-                <label>Any Comment :</label>
-                <textarea id="productDesc" maxlength="50" class="form-control"></textarea>
-                <span class="countChar">Characters Remaining</span>
+                <label>Major Department :</label>
+                <select name="MajorDepID" class="form-control">
+                    <option value="" disabled selected>-- Choose Major Department --</option>
+                    @foreach (var department in Departments)
+                    {
+                        <option value="@department.DepartmentID">@department.Title</option>
+                    }
+                </select>
             </div>
-
-            <button id="addBtn" class="btn float-right btn-info">add product</button>
+            <!--Choose Minor Department-->
+            <div class="form-group">
+                <label>Minor Department :</label>
+                <select name="MinorDepID" class="form-control">
+                    <option value="" disabled selected>-- Choose Minor Department --</option>
+                    @foreach (var department in Departments)
+                    {
+                        <option value="@department.DepartmentID">@department.Title</option>
+                    }
+                </select>
+            </div>
+            <!--Payments Status-->
+            <div class="form-group">
+                <label>Payments Status :</label>
+                <select name="PaymentStatus" class="form-control">
+                    <option value="" disabled selected>-- Choose Payment Status --</option>
+                    <option value="true">Paid</option>
+                    <option value="false">Unpaid</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-block">Add</button>
             <div class="clearfix"></div>
         </div>
+    </form>
 
+    <ul class="nav nav-pills mb-3 my-5" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Professor</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Employee</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Student</a>
+        </li>
+    </ul>
 
-
-        <ul class="nav nav-pills mb-3 my-5" id="pills-tab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Professor</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Employee</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Student</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active text-center my-5" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <div class="row">
-                    <div class="col-md-4 text-center">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active text-center my-5" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
+                <div class="col-md-4 text-center">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <div class="row">
-                    <div class="col-md-4 text-center">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <div>
-                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                            <h3 class="my-3">id</h3>
-                            <h3 class="my-3">name</h3>
-                            <p class="text-danger">Level</p>
-                            <p class="text-info">comment</p>
-                            <button class="btn btn-danger mr-2">delete</button>
-                            <button class="btn btn-info">update</button>
-                        </div>
+                <div class="col-md-4 text-center">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <div class="container text-center">
-            <div class="row" id="rowData">
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-        <script src="~/Scripts/popper.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-        <script src="~/Scripts/Dean/Index.js"></script>
-    </body>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div>
+                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                        <h3 class="my-3">id</h3>
+                        <h3 class="my-3">name</h3>
+                        <p class="text-danger">Level</p>
+                        <p class="text-info">comment</p>
+                        <button class="btn btn-danger mr-2">delete</button>
+                        <button class="btn btn-info">update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <div class="row" id="rowData"></div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Dean/Index.js"></script>
+</body>
 </html>
+
