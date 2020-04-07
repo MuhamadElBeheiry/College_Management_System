@@ -87,13 +87,67 @@ namespace Project.Controllers
 
         #region Doctor section
 
+        [HttpPost]
+        public ActionResult AddDoctor(Doctor doctor)
+        {
+            db.Doctors.Add(doctor);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
+        [HttpGet]
+        public ActionResult DeleteDoctor(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
+            {
+                return RedirectToAction("Index");
+            }
+            foreach (var assignment in doctor.Assignments)
+            {
+                db.Assignments.Remove(assignment);
+            }
+            db.Users.Remove(doctor.User);
+            db.Doctors.Remove(doctor);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         #endregion
 
         #region Employee section
 
+        [HttpPost]
+        public ActionResult AddEmployee(Employee employee)
+        {
+            db.Employees.Add(employee);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
+        [HttpGet]
+        public ActionResult DeleteEmployee(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            db.Users.Remove(employee.User);
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
 
         #endregion
 
