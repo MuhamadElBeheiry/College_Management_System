@@ -20,6 +20,7 @@ namespace Project.Controllers
             return View();
         }
 
+        #region Student section
 
         [HttpGet]
         public ActionResult ViewStudent(int? id)
@@ -33,8 +34,6 @@ namespace Project.Controllers
             ViewData["Levels"] = db.Levels.ToList();
             return View();
         }
-
-        #region Student section
 
         [HttpPost]
         public ActionResult AddStudent(Student student)
@@ -64,6 +63,24 @@ namespace Project.Controllers
             db.Students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult EditStudent(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Student student = db.Students.Find(id);
+            if (student == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Student"] = student;
+            ViewData["Departments"] = db.Departments.ToList();
+            ViewData["Levels"] = db.Levels.ToList();
+            return View();
         }
 
         #endregion
