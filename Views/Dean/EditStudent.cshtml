@@ -1,0 +1,195 @@
+﻿@{
+    Project.Models.Student student = ViewData["Student"] as Project.Models.Student;
+    IEnumerable<Project.Models.Department> Departments = ViewData["Departments"] as IEnumerable<Project.Models.Department>;
+    IEnumerable<Project.Models.Level> Levels = ViewData["Levels"] as IEnumerable<Project.Models.Level>;
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>EditStudent</title>
+</head>
+<body>
+    <form action="~/Dean/EditStudent" method="post">
+        <div class="container py-3" id="Student-form">
+            <h2 class="text-center">Student</h2>
+            <!--Role-->
+            <input type="hidden" name="User.RoleID" value="3" />
+            <!--Student ID-->
+            <div class="form-group">
+                <input type="hidden" name="StudentID" class="form-control" value="@student.StudentID" />
+            </div>
+            <!--SSN-->
+            <div class="form-group">
+                <label>SSN :</label>
+                <input name="User.SSN" class="form-control" value="@student.User.SSN" />
+            </div>
+            <!--Full Name-->
+            <div class="form-group">
+                <label>Full Name :</label>
+                <input name="User.FullName" class="form-control" value="@student.User.FullName" />
+            </div>
+            <!--Gender-->
+            <div class="form-group">
+                <label>Gender :</label>
+                <select name="User.Gender" class="form-control">
+                    @if (student.User.Gender == true)
+                    {
+                        <option value="true" selected>Male</option>
+                        <option value="false">Female</option>
+                    }
+                    else
+                    {
+                        <option value="true">Male</option>
+                        <option value="false" selected>Female</option>
+                    }
+                </select>
+            </div>
+            <!--BirthDate-->
+            <div class="form-group">
+                <label>Birth Date :</label>
+                @{
+                    string birthdate;
+                    if (student.User.BirthDate.Month < 10)
+                    {
+                        if (student.User.BirthDate.Day < 10)
+                        {
+                            birthdate = student.User.BirthDate.Year.ToString() + "-0" + student.User.BirthDate.Month.ToString() + "-0" + student.User.BirthDate.Day.ToString();
+                        }
+                        else
+                        {
+                            birthdate = student.User.BirthDate.Year.ToString() + "-0" + student.User.BirthDate.Month.ToString() + "-" + student.User.BirthDate.Day.ToString();
+                        }
+                    }
+                    else
+                    {
+                        if (student.User.BirthDate.Day < 10)
+                        {
+                            birthdate = student.User.BirthDate.Year.ToString() + "-" + student.User.BirthDate.Month.ToString() + "-0" + student.User.BirthDate.Day.ToString();
+                        }
+                        else
+                        {
+                            birthdate = student.User.BirthDate.Year.ToString() + "-" + student.User.BirthDate.Month.ToString() + "-" + student.User.BirthDate.Day.ToString();
+                        }
+                    }
+                }
+                <input name="User.BirthDate" type="date" class="form-control" value="@birthdate" />
+            </div>
+            <!--Phone-->
+            <div class="form-group">
+                <label>Phone :</label>
+                <input name="User.Phone" class="form-control" value="@student.User.Phone" />
+            </div>
+            <!--Email-->
+            <div class="form-group">
+                <label>Email :</label>
+                <input type="email" name="User.Email" class="form-control" value="@student.User.Email" />
+            </div>
+            <!--Password-->
+            <div class="form-group">
+                <label>Password :</label>
+                <input type="password" name="User.Password" class="form-control" value="@student.User.Password" />
+            </div>
+            <div class="form-group">
+                <label>Confirm Password :</label>
+                <input type="password" class="form-control" value="@student.User.Password" />
+            </div>
+            <!--Street-->
+            <div class="form-group">
+                <label>Street :</label>
+                <input name="User.Street" class="form-control" value="@student.User.Street" />
+            </div>
+            <!--City-->
+            <div class="form-group">
+                <label>City :</label>
+                <input name="User.City" class="form-control" value="@student.User.City" />
+            </div>
+            <!--Country-->
+            <div class="form-group">
+                <label>Country :</label>
+                <input name="User.Country" class="form-control" value="@student.User.Country" />
+            </div>
+
+            <!--Level-->
+            <div class="form-group">
+                <label>Level :</label>
+                <select name="Lvl" class="form-control">
+                    @foreach (var level in Levels)
+                    {
+                        if (student.Lvl == level.level)
+                        {
+                            <option value="@level.level" selected>@level.level</option>
+                        }
+                        else
+                        {
+                            <option value="@level.level">@level.level</option>
+                        }
+                    }
+                </select>
+            </div>
+            <!--Choose Major Department-->
+            <div class="form-group">
+                <label>Major Department :</label>
+                <select name="MajorDepID" class="form-control">
+                    @foreach (var department in Departments)
+                    {
+                        if (student.MajorDepID == department.DepartmentID)
+                        {
+                            <option value="@department.DepartmentID" selected>@department.Title</option>
+                        }
+                        else
+                        {
+                            <option value="@department.DepartmentID">@department.Title</option>
+                        }
+                    }
+                </select>
+            </div>
+            <!--Choose Minor Department-->
+            <div class="form-group">
+                <label>Minor Department :</label>
+                <select name="MinorDepID" class="form-control">
+                    @foreach (var department in Departments)
+                    {
+                        if (student.MinorDepID == department.DepartmentID)
+                        {
+                            <option value="@department.DepartmentID" selected>@department.Title</option>
+                        }
+                        else
+                        {
+                            <option value="@department.DepartmentID">@department.Title</option>
+                        }
+                    }
+                </select>
+            </div>
+            <!--Payments Status-->
+            <div class="form-group">
+                <label>Payments Status :</label>
+                <select name="PaymentStatus" class="form-control">
+                    @if (student.PaymentStatus == true)
+                    {
+                        <option value="true" selected>Paid</option>
+                        <option value="false">Unpaid</option>
+                    }
+                    else
+                    {
+                        <option value="true">Paid</option>
+                        <option value="false" selected>Unpaid</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

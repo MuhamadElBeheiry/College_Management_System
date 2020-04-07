@@ -278,6 +278,7 @@
     <Content Include="Views\Dean\Index.cshtml" />
     <Content Include="Views\Dean\_AddUser.cshtml" />
     <Content Include="Views\Dean\ViewStudent.cshtml" />
+    <Content Include="Views\Dean\EditStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
