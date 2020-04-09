@@ -10,5 +10,10 @@ namespace Project.Controllers
     public class StudentController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
+
+        public ActionResult Profile()
+        {
+            return View();
+        }
     }
 }
