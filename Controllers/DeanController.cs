@@ -83,6 +83,28 @@ namespace Project.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult EditStudent(Student update)
+        {
+            Student current = db.Students.Find(update.StudentID);
+            current.User.SSN = update.User.SSN;
+            current.User.FullName = update.User.FullName;
+            current.User.Gender = update.User.Gender;
+            current.User.BirthDate = update.User.BirthDate;
+            current.User.Phone = update.User.Phone;
+            current.User.Email = update.User.Email;
+            current.User.Password = update.User.Password;
+            current.User.Street = update.User.Street;
+            current.User.City = update.User.City;
+            current.User.Country = update.User.Country;
+            current.Lvl = update.Lvl;
+            current.MajorDepID = update.MajorDepID;
+            current.MinorDepID = update.MinorDepID;
+            current.PaymentStatus = update.PaymentStatus;
+            db.SaveChanges();
+            return RedirectToAction("ViewStudent/" + current.StudentID.ToString());
+        }
+
         #endregion
 
         #region Doctor section
@@ -113,6 +135,43 @@ namespace Project.Controllers
             }
             db.Users.Remove(doctor.User);
             db.Doctors.Remove(doctor);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult EditDoctor(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Doctor"] = doctor;
+            ViewData["Departments"] = db.Departments.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditDoctor(Doctor update)
+        {
+            Doctor current = db.Doctors.Find(update.DoctorID);
+            current.User.SSN = update.User.SSN;
+            current.User.FullName = update.User.FullName;
+            current.User.Gender = update.User.Gender;
+            current.User.BirthDate = update.User.BirthDate;
+            current.User.Phone = update.User.Phone;
+            current.User.Email = update.User.Email;
+            current.User.Password = update.User.Password;
+            current.User.Street = update.User.Street;
+            current.User.City = update.User.City;
+            current.User.Country = update.User.Country;
+            current.Department = update.Department;
+            current.Salary = update.Salary;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
