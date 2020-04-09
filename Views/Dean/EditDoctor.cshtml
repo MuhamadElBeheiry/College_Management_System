@@ -1,0 +1,150 @@
+﻿@{
+    Project.Models.Doctor doctor = ViewData["Doctor"] as Project.Models.Doctor;
+    IEnumerable<Project.Models.Department> Departments = ViewData["Departments"] as IEnumerable<Project.Models.Department>;
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>EditStudent</title>
+</head>
+<body>
+    <form action="~/Dean/EditStudent" method="post">
+        <div class="container py-3" id="Student-form">
+            <h2 class="text-center">Student</h2>
+            <!--Role-->
+            <input type="hidden" name="User.RoleID" value="3" />
+            <!--Student ID-->
+            <div class="form-group">
+                <input type="hidden" name="StudentID" class="form-control" value="@doctor.DoctorID" />
+            </div>
+            <!--SSN-->
+            <div class="form-group">
+                <label>SSN :</label>
+                <input name="User.SSN" class="form-control" value="@doctor.User.SSN" />
+            </div>
+            <!--Full Name-->
+            <div class="form-group">
+                <label>Full Name :</label>
+                <input name="User.FullName" class="form-control" value="@doctor.User.FullName" />
+            </div>
+            <!--Gender-->
+            <div class="form-group">
+                <label>Gender :</label>
+                <select name="User.Gender" class="form-control">
+                    @if (doctor.User.Gender == true)
+                    {
+                        <option value="true" selected>Male</option>
+                        <option value="false">Female</option>
+                    }
+                    else
+                    {
+                        <option value="true">Male</option>
+                        <option value="false" selected>Female</option>
+                    }
+                </select>
+            </div>
+            <!--BirthDate-->
+            <div class="form-group">
+                <label>Birth Date :</label>
+                @{
+                    string birthdate;
+                    if (doctor.User.BirthDate.Month < 10)
+                    {
+                        if (doctor.User.BirthDate.Day < 10)
+                        {
+                            birthdate = doctor.User.BirthDate.Year.ToString() + "-0" + doctor.User.BirthDate.Month.ToString() + "-0" + doctor.User.BirthDate.Day.ToString();
+                        }
+                        else
+                        {
+                            birthdate = doctor.User.BirthDate.Year.ToString() + "-0" + doctor.User.BirthDate.Month.ToString() + "-" + doctor.User.BirthDate.Day.ToString();
+                        }
+                    }
+                    else
+                    {
+                        if (doctor.User.BirthDate.Day < 10)
+                        {
+                            birthdate = doctor.User.BirthDate.Year.ToString() + "-" + doctor.User.BirthDate.Month.ToString() + "-0" + doctor.User.BirthDate.Day.ToString();
+                        }
+                        else
+                        {
+                            birthdate = doctor.User.BirthDate.Year.ToString() + "-" + doctor.User.BirthDate.Month.ToString() + "-" + doctor.User.BirthDate.Day.ToString();
+                        }
+                    }
+                }
+                <input name="User.BirthDate" type="date" class="form-control" value="@birthdate" />
+            </div>
+            <!--Phone-->
+            <div class="form-group">
+                <label>Phone :</label>
+                <input name="User.Phone" class="form-control" value="@doctor.User.Phone" />
+            </div>
+            <!--Email-->
+            <div class="form-group">
+                <label>Email :</label>
+                <input type="email" name="User.Email" class="form-control" value="@doctor.User.Email" />
+            </div>
+            <!--Password-->
+            <div class="form-group">
+                <label>Password :</label>
+                <input type="password" name="User.Password" class="form-control" value="@doctor.User.Password" />
+            </div>
+            <div class="form-group">
+                <label>Confirm Password :</label>
+                <input type="password" class="form-control" value="@doctor.User.Password" />
+            </div>
+            <!--Street-->
+            <div class="form-group">
+                <label>Street :</label>
+                <input name="User.Street" class="form-control" value="@doctor.User.Street" />
+            </div>
+            <!--City-->
+            <div class="form-group">
+                <label>City :</label>
+                <input name="User.City" class="form-control" value="@doctor.User.City" />
+            </div>
+            <!--Country-->
+            <div class="form-group">
+                <label>Country :</label>
+                <input name="User.Country" class="form-control" value="@doctor.User.Country" />
+            </div>
+
+            <!--Choose Department-->
+            <div class="form-group">
+                <label>Department :</label>
+                <select name="MajorDepID" class="form-control">
+                    @foreach (var department in Departments)
+                    {
+                        if (doctor.DepID == department.DepartmentID)
+                        {
+                            <option value="@department.DepartmentID" selected>@department.Title</option>
+                        }
+                        else
+                        {
+                            <option value="@department.DepartmentID">@department.Title</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Salary :</label>
+                <input name="Salary" class="form-control" type="number" value="@doctor.Salary"/>
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
