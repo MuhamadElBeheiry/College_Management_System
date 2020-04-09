@@ -13,17 +13,17 @@
 <head>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <meta name="viewport" content="width=device-width" />
-    <title>EditStudent</title>
+    <title>Edit Doctor</title>
 </head>
 <body>
-    <form action="~/Dean/EditStudent" method="post">
+    <form action="~/Dean/EditDoctor" method="post">
         <div class="container py-3" id="Student-form">
-            <h2 class="text-center">Student</h2>
+            <h2 class="text-center">Doctor</h2>
             <!--Role-->
             <input type="hidden" name="User.RoleID" value="3" />
             <!--Student ID-->
             <div class="form-group">
-                <input type="hidden" name="StudentID" class="form-control" value="@doctor.DoctorID" />
+                <input type="hidden" name="DoctorID" class="form-control" value="@doctor.DoctorID" />
             </div>
             <!--SSN-->
             <div class="form-group">
