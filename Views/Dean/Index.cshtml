@@ -27,71 +27,63 @@
         <button id="employee" class="btn btn-primary">Add Employee</button>
     </div>
 
-    <div class="container py-3" id="Professor-form">
-        <h2 class="text-center"> Add Professor</h2>
-        <div class="container py-4">
-            <input id="searchInp" class="form-control mb-2" placeholder="search .." />
-            <div class="row" id="searchRow"></div>
+    <!--Form of adding new doctor-->
+    <form action="~/Dean/AddDoctor" method="post">
+        <div class="container py-3" id="Professor-form">
+            <h2 class="text-center">Professor</h2>
+            <div id="alertContainer" class="alert alert-danger"></div>
+            <!--Role-->
+            <input type="hidden" name="User.RoleID" value="2" />
+            @Html.Partial("_AddUser")
+            <!--Choose Department-->
+            <div class="form-group">
+                <label>Department :</label>
+                <select name="DepID" class="form-control">
+                    <option value="" disabled selected>-- Choose Department --</option>
+                    @foreach (var department in Departments)
+                    {
+                        <option value="@department.DepartmentID">@department.Title</option>
+                    }
+                </select>
+            </div>
+            <!--Salary-->
+            <div class="form-group">
+                <label>Salary :</label>
+                <input name="Salary" class="form-control" type="number" />
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-block">Add</button>
+            <div class="clearfix"></div>
         </div>
-        <div id="alertContainer" class="alert alert-danger">
-        </div>
-        <div class="form-group">
-            <label>ID :</label>
-            <input id="productName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>First Name :</label>
-            <input id="productName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>Last Name :</label>
-            <input id="productName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>salary :</label>
-            <input id="productPrice" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>Any Comment :</label>
-            <textarea id="productDesc" maxlength="50" class="form-control"></textarea>
-            <span class="countChar">Characters Remaining</span>
-        </div>
-        <button id="addBtn" class="btn float-right btn-info">add product</button>
-        <div class="clearfix"></div>
-    </div>
+    </form>
 
-    <div class="container py-3" id="Employee-form">
-        <h2 class="text-center"> Add Employee</h2>
-        <div class="container py-4">
-            <input id="searchInp" class="form-control mb-2" placeholder="search .." />
-            <div class="row" id="searchRow"></div>
+    <!--Form of adding new employee-->
+    <form action="~/Dean/AddEmployee" method="post">
+        <div class="container py-3" id="Employee-form">
+            <h2 class="text-center">Employee</h2>
+            <div id="alertContainer" class="alert alert-danger"></div>
+            <!--Role-->
+            <input type="hidden" name="User.RoleID" value="4" />
+            @Html.Partial("_AddUser")
+            <!--Choose Department-->
+            <div class="form-group">
+                <label>Department :</label>
+                <select name="DepID" class="form-control">
+                    <option value="" disabled selected>-- Choose Department --</option>
+                    @foreach (var department in Departments)
+                    {
+                        <option value="@department.DepartmentID">@department.Title</option>
+                    }
+                </select>
+            </div>
+            <!--Salary-->
+            <div class="form-group">
+                <label>Salary :</label>
+                <input name="Salary" class="form-control" type="number" />
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-block">Add</button>
+            <div class="clearfix"></div>
         </div>
-        <div id="alertContainer" class="alert alert-danger">
-        </div>
-        <div class="form-group">
-            <label>ID :</label>
-            <input id="productName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>First Name :</label>
-            <input id="productName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>Last Name :</label>
-            <input id="productName" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>salary :</label>
-            <input id="productPrice" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>Any Comment :</label>
-            <textarea id="productDesc" maxlength="50" class="form-control"></textarea>
-            <span class="countChar">Characters Remaining</span>
-        </div>
-        <button id="addBtn" class="btn float-right btn-info">add product</button>
-        <div class="clearfix"></div>
-    </div>
+    </form>
 
     <!--Form of adding new student-->
     <form action="~/Dean/AddStudent" method="post">
@@ -148,6 +140,7 @@
         </div>
     </form>
 
+    <!--Choose list of student, employee and doctor-->
     <ul class="nav nav-pills mb-3 my-5" id="pills-tab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Professor</a>
@@ -161,115 +154,55 @@
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
+        <!-- View Doctors -->
         <div class="tab-pane fade show active text-center my-5" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="row">
-                <div class="col-md-4 text-center">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
+                @foreach (var doctor in Doctors)
+                {
+                    <div class="col-md-4 text-center">
+                        <div>
+                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                            <h3 class="my-3">@doctor.User.FullName</h3>
+                            <h3 class="my-3">@doctor.Department.Title</h3>
+                            <a href="@Url.Action("DeleteDoctor")/@doctor.DoctorID" class="btn btn-danger mr-2">delete</a>
+                            <a href="@Url.Action("EditDoctor")/@doctor.DoctorID" class="btn btn-info">view</a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
-                    </div>
-                </div>
+                }
             </div>
         </div>
+        <!-- View Employees -->
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <div class="row text-center">
-                <div class="col-md-4">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
+                @foreach (var employee in Employees)
+                {
+                    <div class="col-md-4">
+                        <div>
+                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                            <h3 class="my-3">@employee.User.FullName</h3>
+                            <h3 class="my-3">@employee.Department.Title</h3>
+                            <a href="@Url.Action("DeleteEmployee")/@employee.EmployeeID" class="btn btn-danger mr-2">delete</a>
+                            <a href="@Url.Action("ViewEmployee")/@employee.EmployeeID" class="btn btn-info">view</a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
-                    </div>
-                </div>
+                }
             </div>
         </div>
+        <!-- View students -->
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
             <div class="row">
-                <div class="col-md-4 text-center">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
+                @foreach (var student in Students)
+                {
+                    <div class="col-md-4 text-center">
+                        <div>
+                            <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
+                            <h3 class="my-3">@student.User.FullName</h3>
+                            <h3 class="my-3">@student.StudentMajorDepartment.Title</h3>
+                            <a href="@Url.Action("DeleteStudent")/@student.StudentID" class="btn btn-danger mr-2">delete</a>
+                            <a href="@Url.Action("ViewStudent")/@student.StudentID" class="btn btn-info">view</a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div>
-                        <img src="~/Database/Images/Default.png" class="img-fluid rounded-circle w-50">
-                        <h3 class="my-3">id</h3>
-                        <h3 class="my-3">name</h3>
-                        <p class="text-danger">Level</p>
-                        <p class="text-info">comment</p>
-                        <button class="btn btn-danger mr-2">delete</button>
-                        <button class="btn btn-info">update</button>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -283,4 +216,3 @@
     <script src="~/Scripts/Dean/Index.js"></script>
 </body>
 </html>
-
