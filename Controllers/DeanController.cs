@@ -10,6 +10,7 @@ namespace Project.Controllers
     public class DeanController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
+
         public ActionResult Index()
         {
             ViewData["Departments"] = db.Departments.ToList();
@@ -25,11 +26,16 @@ namespace Project.Controllers
         [HttpGet]
         public ActionResult ViewStudent(int? id)
         {
-            if (id == null || db.Students.Find(id) == null)
+            if (id == null)
             {
                 return RedirectToAction("Index");
             }
-            ViewData["Student"] = db.Students.Find(id);
+            Student student = db.Students.Find(id);
+            if(student == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Student"] = student;
             ViewData["Departments"] = db.Departments.ToList();
             ViewData["Levels"] = db.Levels.ToList();
             return View();
@@ -102,12 +108,29 @@ namespace Project.Controllers
             current.MinorDepID = update.MinorDepID;
             current.PaymentStatus = update.PaymentStatus;
             db.SaveChanges();
-            return RedirectToAction("ViewStudent/" + current.StudentID.ToString());
+            return Redirect("~/Dean/ViewStudent/" + current.StudentID.ToString());
         }
 
         #endregion
 
         #region Doctor section
+
+        [HttpGet]
+        public ActionResult ViewDoctor(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Doctor"] = doctor;
+            ViewData["Departments"] = db.Departments.ToList();
+            return View();
+        }
 
         [HttpPost]
         public ActionResult AddDoctor(Doctor doctor)
@@ -173,12 +196,29 @@ namespace Project.Controllers
             current.Department = update.Department;
             current.Salary = update.Salary;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("~/Dean/ViewDoctor/" + current.DoctorID.ToString());
         }
 
         #endregion
 
         #region Employee section
+
+        [HttpGet]
+        public ActionResult ViewEmployee(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Employee"] = employee;
+            ViewData["Departments"] = db.Departments.ToList();
+            return View();
+        }
 
         [HttpPost]
         public ActionResult AddEmployee(Employee employee)
@@ -206,6 +246,44 @@ namespace Project.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult EditEmployee(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Doctor"] = employee;
+            ViewData["Departments"] = db.Departments.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditEmployee(Employee update)
+        {
+            Employee current = db.Employees.Find(update.EmployeeID);
+            current.User.SSN = update.User.SSN;
+            current.User.FullName = update.User.FullName;
+            current.User.Gender = update.User.Gender;
+            current.User.BirthDate = update.User.BirthDate;
+            current.User.Phone = update.User.Phone;
+            current.User.Email = update.User.Email;
+            current.User.Password = update.User.Password;
+            current.User.Street = update.User.Street;
+            current.User.City = update.User.City;
+            current.User.Country = update.User.Country;
+            current.Department = update.Department;
+            current.Salary = update.Salary;
+            db.SaveChanges();
+            return Redirect("~/Dean/ViewEmployee/" + current.EmployeeID.ToString());
         }
 
         #endregion
