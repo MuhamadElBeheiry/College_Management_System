@@ -1,5 +1,5 @@
 ﻿@{
-    Project.Models.Doctor doctor = ViewData["Doctor"] as Project.Models.Doctor;
+    Project.Models.Employee employee = ViewData["Employee"] as Project.Models.Employee;
     IEnumerable<Project.Models.Department> Departments = ViewData["Departments"] as IEnumerable<Project.Models.Department>;
 }
 
@@ -13,40 +13,32 @@
 <head>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <meta name="viewport" content="width=device-width" />
-    <title>Edit Doctor</title>
+    <title>ViewEmployee</title>
 </head>
 <body>
-    <form action="~/Dean/EditDoctor" method="post">
+    <form action="~/Dean/EditDoctor/@employee.EmployeeID" method="get">
         <div class="container py-3">
-            <h2 class="text-center">Professor</h2>
-            <!--Role-->
-            <input type="hidden" name="User.RoleID" value="3" />
-            <!--Student ID-->
-            <div class="form-group">
-                <input type="hidden" name="DoctorID" class="form-control" value="@doctor.DoctorID" />
-            </div>
+            <h2 class="text-center">Employee</h2>
             <!--SSN-->
             <div class="form-group">
                 <label>SSN :</label>
-                <input name="User.SSN" class="form-control" value="@doctor.User.SSN" />
+                <input name="User.SSN" class="form-control" value="@employee.User.SSN" disabled />
             </div>
             <!--Full Name-->
             <div class="form-group">
                 <label>Full Name :</label>
-                <input name="User.FullName" class="form-control" value="@doctor.User.FullName" />
+                <input name="User.FullName" class="form-control" value="@employee.User.FullName" disabled />
             </div>
             <!--Gender-->
             <div class="form-group">
                 <label>Gender :</label>
-                <select name="User.Gender" class="form-control">
-                    @if (doctor.User.Gender == true)
+                <select name="User.Gender" class="form-control" disabled>
+                    @if (employee.User.Gender == true)
                     {
                         <option value="true" selected>Male</option>
-                        <option value="false">Female</option>
                     }
                     else
                     {
-                        <option value="true">Male</option>
                         <option value="false" selected>Female</option>
                     }
                 </select>
@@ -56,72 +48,72 @@
                 <label>Birth Date :</label>
                 @{
                     string birthdate;
-                    if (doctor.User.BirthDate.Month < 10)
+                    if (employee.User.BirthDate.Month < 10)
                     {
-                        if (doctor.User.BirthDate.Day < 10)
+                        if (employee.User.BirthDate.Day < 10)
                         {
-                            birthdate = doctor.User.BirthDate.Year.ToString() + "-0" + doctor.User.BirthDate.Month.ToString() + "-0" + doctor.User.BirthDate.Day.ToString();
+                            birthdate = employee.User.BirthDate.Year.ToString() + "-0" + employee.User.BirthDate.Month.ToString() + "-0" + employee.User.BirthDate.Day.ToString();
                         }
                         else
                         {
-                            birthdate = doctor.User.BirthDate.Year.ToString() + "-0" + doctor.User.BirthDate.Month.ToString() + "-" + doctor.User.BirthDate.Day.ToString();
+                            birthdate = employee.User.BirthDate.Year.ToString() + "-0" + employee.User.BirthDate.Month.ToString() + "-" + employee.User.BirthDate.Day.ToString();
                         }
                     }
                     else
                     {
-                        if (doctor.User.BirthDate.Day < 10)
+                        if (employee.User.BirthDate.Day < 10)
                         {
-                            birthdate = doctor.User.BirthDate.Year.ToString() + "-" + doctor.User.BirthDate.Month.ToString() + "-0" + doctor.User.BirthDate.Day.ToString();
+                            birthdate = employee.User.BirthDate.Year.ToString() + "-" + employee.User.BirthDate.Month.ToString() + "-0" + employee.User.BirthDate.Day.ToString();
                         }
                         else
                         {
-                            birthdate = doctor.User.BirthDate.Year.ToString() + "-" + doctor.User.BirthDate.Month.ToString() + "-" + doctor.User.BirthDate.Day.ToString();
+                            birthdate = employee.User.BirthDate.Year.ToString() + "-" + employee.User.BirthDate.Month.ToString() + "-" + employee.User.BirthDate.Day.ToString();
                         }
                     }
                 }
-                <input name="User.BirthDate" type="date" class="form-control" value="@birthdate" />
+                <input name="User.BirthDate" type="date" class="form-control" value="@birthdate" disabled />
             </div>
             <!--Phone-->
             <div class="form-group">
                 <label>Phone :</label>
-                <input name="User.Phone" class="form-control" value="@doctor.User.Phone" />
+                <input name="User.Phone" class="form-control" value="@employee.User.Phone" disabled />
             </div>
             <!--Email-->
             <div class="form-group">
                 <label>Email :</label>
-                <input type="email" name="User.Email" class="form-control" value="@doctor.User.Email" />
+                <input type="email" name="User.Email" class="form-control" value="@employee.User.Email" disabled />
             </div>
             <!--Password-->
             <div class="form-group">
                 <label>Password :</label>
-                <input type="password" name="User.Password" class="form-control" value="@doctor.User.Password" />
+                <input type="password" name="User.Password" class="form-control" value="@employee.User.Password" disabled />
             </div>
             <div class="form-group">
                 <label>Confirm Password :</label>
-                <input type="password" class="form-control" value="@doctor.User.Password" />
+                <input type="password" class="form-control" value="@employee.User.Password" disabled />
             </div>
             <!--Street-->
             <div class="form-group">
                 <label>Street :</label>
-                <input name="User.Street" class="form-control" value="@doctor.User.Street" />
+                <input name="User.Street" class="form-control" value="@employee.User.Street" disabled />
             </div>
             <!--City-->
             <div class="form-group">
                 <label>City :</label>
-                <input name="User.City" class="form-control" value="@doctor.User.City" />
+                <input name="User.City" class="form-control" value="@employee.User.City" disabled />
             </div>
             <!--Country-->
             <div class="form-group">
                 <label>Country :</label>
-                <input name="User.Country" class="form-control" value="@doctor.User.Country" />
+                <input name="User.Country" class="form-control" value="@employee.User.Country" disabled />
             </div>
             <!--Choose Department-->
             <div class="form-group">
                 <label>Department :</label>
-                <select name="MajorDepID" class="form-control">
+                <select name="MajorDepID" class="form-control" disabled>
                     @foreach (var department in Departments)
                     {
-                        if (doctor.DepID == department.DepartmentID)
+                        if (employee.DepID == department.DepartmentID)
                         {
                             <option value="@department.DepartmentID" selected>@department.Title</option>
                         }
@@ -135,11 +127,11 @@
             <!--Salary-->
             <div class="form-group">
                 <label>Salary :</label>
-                <input name="Salary" class="form-control" type="number" value="@doctor.Salary" />
+                <input name="Salary" class="form-control" type="number" value="@employee.Salary" disabled />
             </div>
 
-            <button type="submit" class="btn btn-outline-dark btn-block">Save</button>
-            <a href="~/Dean/ViewDoctor/@doctor.DoctorID" class="btn btn-outline-dark btn-block">Cancel</a>
+            <button type="submit" class="btn btn-outline-dark btn-block">Edit</button>
+            <a href="~/Dean/Index" class="btn btn-outline-dark btn-block">Back</a>
             <div class="clearfix"></div>
         </div>
     </form>

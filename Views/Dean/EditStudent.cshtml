@@ -18,7 +18,7 @@
 </head>
 <body>
     <form action="~/Dean/EditStudent" method="post">
-        <div class="container py-3" id="Student-form">
+        <div class="container py-3">
             <h2 class="text-center">Student</h2>
             <!--Role-->
             <input type="hidden" name="User.RoleID" value="3" />
@@ -184,7 +184,8 @@
                     }
                 </select>
             </div>
-            <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+            <button type="submit" class="btn btn-outline-dark btn-block">Save</button>
+            <a href="~/Dean/ViewStudent/@student.StudentID" class="btn btn-outline-dark btn-block">Cancel</a>
             <div class="clearfix"></div>
         </div>
     </form>
