@@ -9423,6 +9423,8 @@
     <Content Include="Views\Dean\EditStudent.cshtml" />
     <Content Include="Views\Student\Profile.cshtml" />
     <Content Include="Views\Dean\EditDoctor.cshtml" />
+    <Content Include="Views\Shared\_sidebar.cshtml" />
+    <Content Include="Views\Shared\_topbar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
