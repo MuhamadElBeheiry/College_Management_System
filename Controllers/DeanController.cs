@@ -288,5 +288,63 @@ namespace Project.Controllers
 
         #endregion
 
+        #region Department section
+
+        public ActionResult ViewDepartments()
+        {
+            ViewData["Departments"] = db.Departments.ToList();
+            return View();
+        }
+
+        public ActionResult AddDepartment(Department department)
+        {
+            db.Departments.Add(department);
+            db.SaveChanges();
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult DeleteDepartment(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("ViewDepartments");
+            }
+            Department department = db.Departments.Find(id);
+            if (department == null)
+            {
+                return RedirectToAction("ViewDepartments");
+            }
+            db.Departments.Remove(department);
+            db.SaveChanges();
+            return RedirectToAction("ViewDepartments");
+        }
+
+        [HttpGet]
+        public ActionResult EditDepartment(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("ViewDepartments");
+            }
+            Department department = db.Departments.Find(id);
+            if (department == null)
+            {
+                return RedirectToAction("ViewDepartments");
+            }
+            ViewData["Department"] = department;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditDepartment(Department update)
+        {
+            Department current = db.Departments.Find(update.DepartmentID);
+            current.Title = update.Title;
+            db.SaveChanges();
+            return View();
+        }
+
+        #endregion
     }
 }
