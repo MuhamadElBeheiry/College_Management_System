@@ -9428,6 +9428,7 @@
     <Content Include="Views\Dean\ViewEmployee.cshtml" />
     <Content Include="Views\Dean\ViewStudent.cshtml" />
     <Content Include="Views\Dean\_AddUser.cshtml" />
+    <Content Include="Views\Student\timeTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
