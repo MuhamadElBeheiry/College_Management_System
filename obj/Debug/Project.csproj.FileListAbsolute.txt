@@ -81,3 +81,6 @@ C:\Users\MAS\Desktop\SW2 Project Preferences\xxxxxxxxxxxxxxxx\Project\obj\Debug\
 C:\Users\MAS\Desktop\SW2 Project Preferences\xxxxxxxxxxxxxxxx\Project\obj\Debug\Project.csproj.CopyComplete
 C:\Users\MAS\Desktop\SW2 Project Preferences\xxxxxxxxxxxxxxxx\Project\obj\Debug\Project.dll
 C:\Users\MAS\Desktop\SW2 Project Preferences\xxxxxxxxxxxxxxxx\Project\obj\Debug\Project.pdb
+C:\Users\Voli\Documents\GitHub\ERP\bin\roslyn\csc.exe
+C:\Users\Voli\Documents\GitHub\ERP\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Voli\Documents\GitHub\ERP\bin\roslyn\Microsoft.CodeAnalysis.dll
