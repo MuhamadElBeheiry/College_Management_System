@@ -346,5 +346,69 @@ namespace Project.Controllers
         }
 
         #endregion
+
+        #region Courses section
+
+        public ActionResult ViewCourses()
+        {
+            ViewData["Courses"] = db.Courses.ToList();
+            return View();
+        }
+
+        public ActionResult AddCourse(Course course)
+        {
+            db.Courses.Add(course);
+            db.SaveChanges();
+            return RedirectToAction("ViewCourses");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteCourse(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("ViewCourses");
+            }
+            Course course = db.Courses.Find(id);
+            if (course == null)
+            {
+                return RedirectToAction("ViewCourses");
+            }
+            db.Courses.Remove(course);
+            db.SaveChanges();
+            return RedirectToAction("ViewCourses");
+        }
+
+        [HttpGet]
+        public ActionResult EditCourse(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("ViewCourses");
+            }
+            Course course = db.Courses.Find(id);
+            if (course == null)
+            {
+                return RedirectToAction("ViewCourses");
+            }
+            ViewData["Course"] = course;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditCourse(Course update)
+        {
+            Course current = db.Courses.Find(update.CourseID);
+            current.DoctorID = update.DoctorID;
+            current.DepID = update.DepID;
+            current.Credits = update.Credits;
+            current.Lvl = update.Lvl;
+            current.Title = update.Title;
+            db.SaveChanges();
+            return Redirect("~/Dean/EditCourse/" + current.CourseID.ToString());
+        }
+
+        #endregion
+
     }
 }
