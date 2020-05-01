@@ -71,7 +71,8 @@ namespace Project.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["Courses"] = student.Courses;
-            return View();
+            //Redirect to the view of student's courses or edit it if you are doing it in different way.
+            return View("~/Views/Student/Courses.cshtml");
         }
 
         [HttpGet]
