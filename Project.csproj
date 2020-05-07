@@ -9430,6 +9430,9 @@
     <Content Include="Views\Dean\_AddUser.cshtml" />
     <Content Include="Views\Student\timeTable.cshtml" />
     <Content Include="Views\Student\Courses.cshtml" />
+    <Content Include="Views\Student\Home.cshtml" />
+    <Content Include="Views\Shared\login.cshtml" />
+    <Content Include="Views\Shared\signUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
