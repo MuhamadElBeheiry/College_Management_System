@@ -420,6 +420,7 @@
     <Content Include="Assets\js\plugins.js" />
     <Content Include="Assets\js\quickview.js" />
     <Content Include="Assets\js\sidebar_hover.js" />
+    <Content Include="Assets\js\student_profile.js" />
     <Content Include="Assets\js\widgets\._notes.js" />
     <Content Include="Assets\js\widgets\._todo_list.js" />
     <Content Include="Assets\js\widgets\._widget_weather.js" />
