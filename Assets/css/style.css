@@ -53,6 +53,11 @@
 /* Inline Edition X-Editable - OPTIONAL */
 /* Show Html Code - OPTIONAL */
 /* FONTS */
+.inputClass {
+    pointer-events: none;
+    border: none !important;
+    background-color: #f5f5f5 !important;
+}
 @font-face {
   font-family: 'weather';
   src: url('icons/weather/artill_clean_icons-webfont.eot');
