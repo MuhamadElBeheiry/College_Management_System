@@ -131,9 +131,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Authorization\CustomAuthenticationFilter.cs" />
+    <Compile Include="Authorization\CustomAuthorizeAttribute.cs" />
     <Compile Include="Controllers\DeanController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,6 +166,7 @@
     <Content Include="Assets\css\icons\font-awesome\._font-awesome.min.css" />
     <Content Include="Assets\css\icons\font-awesome\._fontawesome-webfont.svg" />
     <Content Include="Assets\css\icons\font-awesome\font-awesome.css" />
+    <Content Include="Assets\css\icons\font-awesome\font-awesome.js" />
     <Content Include="Assets\css\icons\font-awesome\font-awesome.min.css" />
     <Content Include="Assets\css\icons\font-awesome\fontawesome-webfont.svg" />
     <Content Include="Assets\css\icons\glyphicons\._glyphicons-halflings-regular.svg" />
@@ -420,6 +424,7 @@
     <Content Include="Assets\js\plugins.js" />
     <Content Include="Assets\js\quickview.js" />
     <Content Include="Assets\js\sidebar_hover.js" />
+    <Content Include="Assets\js\student_profile.js" />
     <Content Include="Assets\js\widgets\._notes.js" />
     <Content Include="Assets\js\widgets\._todo_list.js" />
     <Content Include="Assets\js\widgets\._widget_weather.js" />
@@ -8019,7 +8024,23 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Dean\Index.css" />
+    <Content Include="Content\Home\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Home\css\main.css" />
+    <Content Include="Content\Home\css\util.css" />
+    <Content Include="Content\Home\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\Home\images\icons\favicon.ico" />
+    <Content Include="Content\Home\images\img-01.png" />
+    <Content Include="Content\Home\js\main.js" />
+    <Content Include="Content\Home\vendor\animate\animate.css" />
+    <Content Include="Content\Home\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Home\vendor\bootstrap\js\popper.js" />
+    <Content Include="Content\Home\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\Home\vendor\jquery\jquery-3.2.1.min.js" />
+    <Content Include="Content\Home\vendor\select2\select2.min.css" />
+    <Content Include="Content\Home\vendor\select2\select2.min.js" />
+    <Content Include="Content\Home\vendor\tilt\tilt.jquery.min.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Database\Images\user-avatar.png" />
     <Content Include="Database\Images\Default.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -9402,6 +9423,7 @@
     <Content Include="Scripts\src\utils\setAttributes.js" />
     <Content Include="Scripts\src\utils\setStyles.js" />
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\Student\Profile.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -9428,7 +9450,21 @@
     <Content Include="Views\Dean\ViewEmployee.cshtml" />
     <Content Include="Views\Dean\ViewStudent.cshtml" />
     <Content Include="Views\Dean\_AddUser.cshtml" />
-    <Content Include="Views\Student\timeTable.cshtml" />
+    <Content Include="Views\Student\Timetable.cshtml" />
+    <Content Include="Views\Student\Courses.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Shared\signUp.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Student\_StudentSidebar.cshtml" />
+    <Content Include="Views\Student\_StudentTopbar.cshtml" />
+    <Content Include="Views\Employee\_EmployeeSidebar.cshtml" />
+    <Content Include="Views\Employee\_EmployeeTopbar.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\Profile.cshtml" />
+    <Content Include="Views\Doctor\_DoctorSidebar.cshtml" />
+    <Content Include="Views\Doctor\_DoctorTopbar.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -9437,9 +9473,6 @@
     <Folder Include="Content\Student\" />
     <Folder Include="Scripts\Doctor\" />
     <Folder Include="Scripts\Employee\" />
-    <Folder Include="Scripts\Student\" />
-    <Folder Include="Views\Doctor\" />
-    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -27,15 +27,13 @@
 <body class="fixed-topbar color-default theme-sdtl submenu-hover">
     <section>
         <!--Begin sidebar   -->
-        <?php
-        include'sidebar.php';
-        ?>
+        @Html.Partial("_sidebar");
         <!--End sidebar   -->
         <!-- BEGIN PAGE CONTENT -->
         <div class="main-content" style="min-height:600px !important;">
-            <!--Start topbar  ->
-             <?php include'topbar.php' ?>
-            <!--End topbar  ->
+            <!--Start topbar  -->
+             @Html.Partial("_topbar");
+            <!--End topbar  -->
 
                  <!-- BEGIN PAGE CONTENT -->
             <div class="page-content">
