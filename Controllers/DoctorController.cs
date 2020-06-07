@@ -1,4 +1,5 @@
-﻿using Project.Models;
+﻿using Project.Authorization;
+using Project.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,9 +9,17 @@ using System.Web.Mvc;
 
 namespace Project.Controllers
 {
+    [CustomAuthenticationFilter]
+    [CustomAuthorize("Doctor")]
     public class DoctorController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
+
+        public ActionResult Index()
+        {
+            ViewData["Doctor"] = (Session["UserData"] as User).Doctor;
+            return View();
+        }
 
         [HttpGet, ActionName("Profile")]
         public ActionResult ProfileGet(int? id)
@@ -29,7 +38,7 @@ namespace Project.Controllers
         }
 
         [HttpPost, ActionName("Profile")]
-        public ActionResult ProfilePost(Doctor update, HttpPostedFileBase profileImg)
+        public ActionResult ProfilePost(Doctor update, HttpPostedFileBase profileImg, bool deleteImg)
         {
             Doctor current = db.Doctors.Find(update.DoctorID);
             current.User.Phone = update.User.Phone;
@@ -39,9 +48,24 @@ namespace Project.Controllers
             current.User.City = update.User.City;
             current.User.Country = update.User.Country;
 
-            if (profileImg != null) //check if there is anychange in profile image
+            if (deleteImg)
             {
                 if (current.User.UserPicture != null) //check if there is an old image
+                {
+                    string imgPath = Server.MapPath(current.User.UserPicture.Path); //get path of the old image
+                    if (System.IO.File.Exists(imgPath)) //check if image file is exist
+                    {
+                        System.IO.File.Delete(imgPath); //delete the old image
+                    }
+                    db.UserPictures.Remove(current.User.UserPicture);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Profile", new { id = current.DoctorID });
+            }
+
+            if (profileImg != null) //check if there is anychange in profile image
+            {
+                if (current.User.UserPicture != null && profileImg.ContentType.Contains("image")) //check if there is an old image
                 {
                     string imgPath = Server.MapPath("~/" + current.User.UserPicture.Path); //get path of the old image
                     if (System.IO.File.Exists(imgPath)) //check if image file is exist
@@ -49,13 +73,23 @@ namespace Project.Controllers
                         System.IO.File.Delete(imgPath); //delete the old image
                     }
                 }
-                string path = "~/Database/Images/" + Path.GetFileName(profileImg.FileName); //get path of new image
-                profileImg.SaveAs(Server.MapPath(path)); //save new uploaded profile image file
-                current.User.UserPicture.Path = path; //update profile image
+                if (profileImg.ContentType.Contains("image"))
+                {
+                    string path = "~/Database/Images/" + Path.GetFileName(profileImg.FileName); //get path of new image
+                    profileImg.SaveAs(Server.MapPath(path)); //save new uploaded profile image file
+                    if (current.User.UserPicture != null)
+                    {
+                        current.User.UserPicture.Path = path; //update profile image
+                    }
+                    else
+                    {
+                        current.User.UserPicture = new UserPicture() { Path = path };
+                    }
+                }
             }
 
             db.SaveChanges();
-            return RedirectToAction("Profile/" + current.DoctorID.ToString());
+            return RedirectToAction("Profile", new { id = current.DoctorID });
         }
     }
 }
