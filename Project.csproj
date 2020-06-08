@@ -9428,6 +9428,12 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\Dean\course\css\bootstrap.min.css" />
+    <Content Include="Views\Dean\course\index.html" />
+    <Content Include="Views\Dean\course\js\bootstrap.min.js" />
+    <Content Include="Views\Dean\course\js\course.js" />
+    <Content Include="Views\Dean\course\js\jquery-3.4.1.min.js" />
+    <Content Include="Views\Dean\course\js\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -9465,6 +9471,8 @@
     <Content Include="Views\Doctor\_DoctorTopbar.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\Profile.cshtml" />
+    <Content Include="Views\Dean\_DeanTopbar.cshtml" />
+    <Content Include="Views\Dean\_DeanSidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using Project.Models;
+﻿using Project.Authorization;
+using Project.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,16 @@ using System.Web.Mvc;
 
 namespace Project.Controllers
 {
+    [CustomAuthenticationFilter]
+    [CustomAuthorize("Dean")]
     public class DeanController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
 
         public ActionResult Index()
         {
+            var id = (Session["UserData"] as User).Doctor.DoctorID;
+            ViewData["Dean"] = db.Doctors.Find(id);
             ViewData["Departments"] = db.Departments.ToList();
             ViewData["Levels"] = db.Levels.ToList();
             ViewData["Students"] = db.Students.ToList();
@@ -22,24 +27,6 @@ namespace Project.Controllers
         }
 
         #region Student section
-
-        [HttpGet]
-        public ActionResult ViewStudent(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            Student student = db.Students.Find(id);
-            if(student == null)
-            {
-                return RedirectToAction("Index");
-            }
-            ViewData["Student"] = student;
-            ViewData["Departments"] = db.Departments.ToList();
-            ViewData["Levels"] = db.Levels.ToList();
-            return View();
-        }
 
         [HttpPost]
         public ActionResult AddStudent(Student student)
@@ -72,6 +59,25 @@ namespace Project.Controllers
         }
 
         [HttpGet]
+        public ActionResult ViewStudent(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Student student = db.Students.Find(id);
+            if(student == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Dean"] = db.Doctors.Find((Session["UserData"] as User).Doctor.DoctorID);
+            ViewData["Student"] = student;
+            ViewData["Departments"] = db.Departments.ToList();
+            ViewData["Levels"] = db.Levels.ToList();
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult EditStudent(int? id)
         {
             if (id == null)
@@ -83,6 +89,7 @@ namespace Project.Controllers
             {
                 return RedirectToAction("Index");
             }
+            ViewData["Dean"] = db.Doctors.Find((Session["UserData"] as User).Doctor.DoctorID);
             ViewData["Student"] = student;
             ViewData["Departments"] = db.Departments.ToList();
             ViewData["Levels"] = db.Levels.ToList();
@@ -108,29 +115,12 @@ namespace Project.Controllers
             current.MinorDepID = update.MinorDepID;
             current.PaymentStatus = update.PaymentStatus;
             db.SaveChanges();
-            return Redirect("~/Dean/ViewStudent/" + current.StudentID.ToString());
+            return RedirectToAction("ViewStudent", "Dean", new { id = current.StudentID });
         }
 
         #endregion
 
         #region Doctor section
-
-        [HttpGet]
-        public ActionResult ViewDoctor(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            Doctor doctor = db.Doctors.Find(id);
-            if (doctor == null)
-            {
-                return RedirectToAction("Index");
-            }
-            ViewData["Doctor"] = doctor;
-            ViewData["Departments"] = db.Departments.ToList();
-            return View();
-        }
 
         [HttpPost]
         public ActionResult AddDoctor(Doctor doctor)
@@ -163,6 +153,24 @@ namespace Project.Controllers
         }
 
         [HttpGet]
+        public ActionResult ViewDoctor(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Dean"] = db.Doctors.Find((Session["UserData"] as User).Doctor.DoctorID);
+            ViewData["Doctor"] = doctor;
+            ViewData["Departments"] = db.Departments.ToList();
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult EditDoctor(int? id)
         {
             if (id == null)
@@ -174,6 +182,7 @@ namespace Project.Controllers
             {
                 return RedirectToAction("Index");
             }
+            ViewData["Dean"] = db.Doctors.Find((Session["UserData"] as User).Doctor.DoctorID);
             ViewData["Doctor"] = doctor;
             ViewData["Departments"] = db.Departments.ToList();
             return View();
@@ -196,29 +205,12 @@ namespace Project.Controllers
             current.Department = update.Department;
             current.Salary = update.Salary;
             db.SaveChanges();
-            return Redirect("~/Dean/ViewDoctor/" + current.DoctorID.ToString());
+            return RedirectToAction("ViewDoctor", "Dean", new { id = current.DoctorID });
         }
 
         #endregion
 
         #region Employee section
-
-        [HttpGet]
-        public ActionResult ViewEmployee(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return RedirectToAction("Index");
-            }
-            ViewData["Employee"] = employee;
-            ViewData["Departments"] = db.Departments.ToList();
-            return View();
-        }
 
         [HttpPost]
         public ActionResult AddEmployee(Employee employee)
@@ -248,6 +240,24 @@ namespace Project.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult ViewEmployee(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewData["Dean"] = db.Doctors.Find((Session["UserData"] as User).Doctor.DoctorID);
+            ViewData["Employee"] = employee;
+            ViewData["Departments"] = db.Departments.ToList();
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult EditEmployee(int? id)
@@ -261,6 +271,7 @@ namespace Project.Controllers
             {
                 return RedirectToAction("Index");
             }
+            ViewData["Dean"] = db.Doctors.Find((Session["UserData"] as User).Doctor.DoctorID);
             ViewData["Doctor"] = employee;
             ViewData["Departments"] = db.Departments.ToList();
             return View();
@@ -283,7 +294,7 @@ namespace Project.Controllers
             current.Department = update.Department;
             current.Salary = update.Salary;
             db.SaveChanges();
-            return Redirect("~/Dean/ViewEmployee/" + current.EmployeeID.ToString());
+            return RedirectToAction("ViewEmployee", "Dean", new { id = current.EmployeeID });
         }
 
         #endregion

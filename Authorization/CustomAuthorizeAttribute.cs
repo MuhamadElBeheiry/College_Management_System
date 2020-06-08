@@ -31,6 +31,7 @@ namespace Project.Authorization
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
+            filterContext.HttpContext.Session.Abandon();
             filterContext.Result = new RedirectToRouteResult(
                new RouteValueDictionary
                {

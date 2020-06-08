@@ -115,7 +115,7 @@ namespace Project.Models
                     Country = "Egypt",
                     Email = "Taha85@gmail.com",
                     Password = "Taha01176342981",
-                    RoleID = 2
+                    RoleID = 1
                 },
                 DepID = 2,
                 Salary = 3000

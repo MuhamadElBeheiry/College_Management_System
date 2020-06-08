@@ -21,6 +21,7 @@ namespace Project.Authorization
         {
             if (filterContext.Result == null || filterContext.Result is HttpUnauthorizedResult)
             {
+                filterContext.HttpContext.Session.Abandon();
                 filterContext.Result = new RedirectToRouteResult(
                 new RouteValueDictionary
                 {

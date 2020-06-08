@@ -34,7 +34,7 @@ namespace Project.Controllers
                     }
                     else if (user.Role.Title == "Doctor")
                     {
-                        return RedirectToAction("Indexs", "Doctor");
+                        return RedirectToAction("Index", "Doctor");
                     }
                     else if (user.Role.Title == "Student")
                     {
