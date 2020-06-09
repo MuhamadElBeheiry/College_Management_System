@@ -1,7 +1,11 @@
-<h3>(Admin Account) ==>     username:Taha85@gmail.com             password:Taha01176342981</h3>
-<br>
-<h3>(Doctor Account) ==>    username:DrSanaa80@gmail.com          password:01234685726</h3>
-<br>
-<h3>(Student Account) ==>   username:Reem9921@hotmail.com         password:Reem99921</h3>
-<br>
-<h3>(Employee Account) ==>  username:Youssef.Ali.92@gmail.com     password:Youssef123456</h3>
+## Notes :-
+**1. Before you run the application be sure there no database with that name "ERP".**<br>
+**2. When the application run you will got login page and there is four usernames with there Passwords for different actors below.**<br>
+
+
+| **User Role** |         **Username**         |     **Password**    |
+|:-------------:|:----------------------------:|:-------------------:|
+|     Admin     |       Taha85@gmail.com       |   Taha01176342981   |
+|     Doctor    |      DrSanaa80@gmail.com     |     01234685726     |
+|    Student    |     Reem9921@hotmail.com     |      Reem99921      |
+|    Employee   |   Youssef.Ali.92@gmail.com   |    Youssef123456    |
