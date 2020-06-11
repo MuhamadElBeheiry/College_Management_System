@@ -26,12 +26,10 @@
     <link href="~/Assets/css/style.css" rel="stylesheet"> <!-- MANDATORY -->
     <link href="~/Assets/css/theme.css" rel="stylesheet"> <!-- MANDATORY -->
     <link href="~/Assets/css/ui.css" rel="stylesheet"> <!-- MANDATORY -->
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/Dean/Index.css" />
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link href="~/Assets/plugins/datatables/dataTables.min.css" rel="stylesheet">
     <script src="~/Assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    <title>Index</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
 </head>
 <body>
 
@@ -58,10 +56,11 @@
             <Br>
             <ul class="nav nav-sidebar">
                 <li class="tm nav-active" style="width: 100%;"><a href="@Url.Action("Index", "Dean")"><i class="fas fa-archway" style="font-size:large;"></i><span>Home</span></a></li>
-                <li class="tm nav-active"><a href="#"><i class="fas fa-book-open" style="font-size:large;"></i><span>Subjects</span></a></li>
-                <li class="tm nav-active"><a href="#"><i class="fas fa-calendar-alt" style="font-size:large;">&nbsp;</i><span>Timetable</span></a></li>
+                <li class="tm nav-active"><a href="@Url.Action("ViewCourses", "Dean")"><i class="fas fa-book-open" style="font-size:large;"></i><span>Courses</span></a></li>
+                <li class="tm nav-active"><a href="@Url.Action("ViewDepartments", "Dean")"><i class="fas fa-address-card" style="font-size:large;"></i><span>Departments</span></a></li>
+                <li class="tm nav-active"><a href="#"><i class="fas fa-calendar-alt" style="font-size:large;">&nbsp;</i><span>Timetables</span></a></li>
                 <li class="tm nav-active">
-                    <a href="#"><i class="fas fa-envelope" style="font-size:large;">&nbsp;</i><span>Mailbox</span> <span class="fa arrow"></span></a>
+                    <a href="@Url.Action("Mail", "Dean")"><i class="fas fa-envelope" style="font-size:large;">&nbsp;</i><span>Mailbox</span> <span class="fa arrow"></span></a>
                 </li>
 
             </ul>
@@ -78,7 +77,7 @@
     </div>
     <!-- END SIDEBAR -->
     <!-- BEGIN TOPBAR -->
-    <div class="topbar" style="width: 100%;position:fixed;">
+    <div class="topbar" style="width: 100%;">
         <div class="header-left" style="display: block;">
             <div class="topnav">
                 <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>

@@ -51,10 +51,11 @@
             <Br>
             <ul class="nav nav-sidebar">
                 <li class="tm nav-active" style="width: 100%;"><a href="@Url.Action("Index", "Dean")"><i class="fas fa-archway" style="font-size:large;"></i><span>Home</span></a></li>
-                <li class="tm nav-active"><a href="#"><i class="fas fa-book-open" style="font-size:large;"></i><span>Subjects</span></a></li>
+                <li class="tm nav-active"><a href="@Url.Action("ViewCourses", "Dean")"><i class="fas fa-book-open" style="font-size:large;"></i><span>Courses</span></a></li>
+                <li class="tm nav-active"><a href="@Url.Action("ViewDepartments", "Dean")"><i class="fas fa-address-card" style="font-size:large;"></i><span>Departments</span></a></li>
                 <li class="tm nav-active"><a href="#"><i class="fas fa-calendar-alt" style="font-size:large;">&nbsp;</i><span>Timetable</span></a></li>
                 <li class="tm nav-active">
-                    <a href="#"><i class="fas fa-envelope" style="font-size:large;">&nbsp;</i><span>Mailbox</span> <span class="fa arrow"></span></a>
+                    <a href="@Url.Action("Mail", "Dean")"><i class="fas fa-envelope" style="font-size:large;">&nbsp;</i><span>Mailbox</span> <span class="fa arrow"></span></a>
                 </li>
 
             </ul>
@@ -72,7 +73,7 @@
     <!-- END SIDEBAR -->
 
     <!-- BEGIN TOPBAR -->
-    <div class="topbar" style="width: 100%;position:fixed;">
+    <div class="topbar" style="width: 100%;">
         <div class="header-left" style="display: block;">
             <div class="topnav">
                 <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>

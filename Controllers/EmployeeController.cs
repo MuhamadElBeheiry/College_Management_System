@@ -91,5 +91,30 @@ namespace Project.Controllers
             db.SaveChanges();
             return RedirectToAction("Profile", new { id = current.EmployeeID });
         }
+
+        public ActionResult Mail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Mail(Mail mail, string ReceiverEmail)
+        {
+            mail.ReceiverID = (from u in (db.Users.ToList()) where u.Email == ReceiverEmail select u.UserId).FirstOrDefault<int>();
+            if (mail.ReceiverID == null)
+            {
+                return View();
+            }
+            mail.Inbox = true;
+            mail.Draft = false;
+            mail.Sent = false;
+            mail.Trash = false;
+            mail.DateTime = DateTime.Now;
+
+            db.Mails.Add(mail);
+            db.SaveChanges();
+
+            return View();
+        }
     }
 }

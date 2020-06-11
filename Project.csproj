@@ -151,6 +151,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\Level.cs" />
+    <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Timetable.cs" />
@@ -8039,6 +8040,9 @@
     <Content Include="Content\Home\vendor\select2\select2.min.css" />
     <Content Include="Content\Home\vendor\select2\select2.min.js" />
     <Content Include="Content\Home\vendor\tilt\tilt.jquery.min.js" />
+    <Content Include="Content\Mail\w1.css" />
+    <Content Include="Content\Mail\w2.css" />
+    <Content Include="Content\Mail\w3.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Database\Images\user-avatar.png" />
     <Content Include="Database\Images\Default.png" />
@@ -9355,6 +9359,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Mail\Mail.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -9428,12 +9433,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Views\Dean\course\css\bootstrap.min.css" />
-    <Content Include="Views\Dean\course\index.html" />
-    <Content Include="Views\Dean\course\js\bootstrap.min.js" />
-    <Content Include="Views\Dean\course\js\course.js" />
-    <Content Include="Views\Dean\course\js\jquery-3.4.1.min.js" />
-    <Content Include="Views\Dean\course\js\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -9446,8 +9445,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Student\Profile.cshtml" />
-    <Content Include="Views\Shared\_sidebar.cshtml" />
-    <Content Include="Views\Shared\_topbar.cshtml" />
     <Content Include="Views\Dean\EditDoctor.cshtml" />
     <Content Include="Views\Dean\EditEmployee.cshtml" />
     <Content Include="Views\Dean\EditStudent.cshtml" />
@@ -9459,20 +9456,24 @@
     <Content Include="Views\Student\Timetable.cshtml" />
     <Content Include="Views\Student\Courses.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
-    <Content Include="Views\Shared\signUp.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Student\_StudentSidebar.cshtml" />
     <Content Include="Views\Student\_StudentTopbar.cshtml" />
-    <Content Include="Views\Employee\_EmployeeSidebar.cshtml" />
-    <Content Include="Views\Employee\_EmployeeTopbar.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Profile.cshtml" />
-    <Content Include="Views\Doctor\_DoctorSidebar.cshtml" />
-    <Content Include="Views\Doctor\_DoctorTopbar.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\Profile.cshtml" />
-    <Content Include="Views\Dean\_DeanTopbar.cshtml" />
-    <Content Include="Views\Dean\_DeanSidebar.cshtml" />
+    <Content Include="Views\Student\Mail.cshtml" />
+    <Content Include="Views\Dean\ViewCourses.cshtml" />
+    <Content Include="Views\Employee\Mail.cshtml" />
+    <Content Include="Views\Doctor\Mail.cshtml" />
+    <Content Include="Views\Dean\Mail.cshtml" />
+    <Content Include="Views\Dean\AddCourse.cshtml" />
+    <Content Include="Views\Dean\EditCourse.cshtml" />
+    <Content Include="Views\Dean\ViewDepartments.cshtml" />
+    <Content Include="Views\Dean\EditDepartment.cshtml" />
+    <Content Include="Views\Dean\AddDepartment.cshtml" />
+    <Content Include="Views\Dean\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

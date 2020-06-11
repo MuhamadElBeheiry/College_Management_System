@@ -20,6 +20,7 @@ namespace Project.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Lecture> Lectures { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
+        public virtual DbSet<Mail> Mails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Timetable> Timetables { get; set; }
@@ -210,7 +211,17 @@ namespace Project.Models
 
             #region User’s relations
 
+            modelBuilder.Entity<User>()
+                .HasMany<Mail>(u => u.SendedMails)
+                .WithRequired(m => m.Sender)
+                .HasForeignKey(u => u.SenderID)
+                .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<User>()
+                .HasMany<Mail>(u => u.ReceivedMails)
+                .WithRequired(m => m.Receiver)
+                .HasForeignKey(u => u.ReceiverID)
+                .WillCascadeOnDelete(false);
 
             #endregion
 

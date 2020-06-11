@@ -9,6 +9,12 @@ namespace Project.Models
 {
     public partial class User
     {
+        public User()
+        {
+            ReceivedMails = new HashSet<Mail>();
+            SendedMails = new HashSet<Mail>();
+        }
+
         [Key]
         public int UserId { get; set; }
 
@@ -53,5 +59,9 @@ namespace Project.Models
         public virtual Doctor Doctor { get; set; }
 
         public virtual Employee Employee { get; set; }
+
+        public virtual ICollection<Mail> ReceivedMails { get; set; }
+
+        public virtual ICollection<Mail> SendedMails { get; set; }
     }
 }
